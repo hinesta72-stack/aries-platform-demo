@@ -1,28 +1,31 @@
-﻿import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "../styles/globals.css";
-import LeafletStyles from "@/components/LeafletMap"
-
-const inter = Inter({ subsets: ["latin"] })
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "ARIESâ„¢ Resilience Index Platform",
-  description: "AMERESERVE Resilience Command Center",
-    generator: 'v0.dev'
+  title: 'v0 App',
+  description: 'Created with v0',
+  generator: 'v0.dev',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-900 text-white min-h-screen`}>
-        <LeafletStyles />
-        {children}
-      </body>
+      <head>
+        <style>{`
+html {
+  font-family: ${GeistSans.style.fontFamily};
+  --font-sans: ${GeistSans.variable};
+  --font-mono: ${GeistMono.variable};
+}
+        `}</style>
+      </head>
+      <body>{children}</body>
     </html>
   )
 }
